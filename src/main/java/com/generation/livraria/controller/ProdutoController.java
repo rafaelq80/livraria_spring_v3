@@ -1,5 +1,6 @@
 package com.generation.livraria.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,6 +79,11 @@ public class ProdutoController {
 
 		produtoRepository.deleteById(id);
 
+	}
+	
+	@GetMapping("/preco_inicial/{inicio}/preco_final/{fim}")
+	public ResponseEntity<List<Produto>> getByPrecoEntreNative(@PathVariable BigDecimal inicio, @PathVariable BigDecimal fim){
+			return ResponseEntity.ok(produtoRepository.buscarProdutosEntre(inicio, fim));
 	}
 
 }
